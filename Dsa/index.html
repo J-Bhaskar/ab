@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Spectra - Free Data Structures & Algorithms Roadmap</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/Dsa/css/styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+        <script src="/Dsa/js/sectionQuestions.js" defer></script>
+        <script src="/Dsa/js/app.js" defer></script>
+        <script>
+            
+                window.currentUser = null;
+            
+        </script>
+    </head>
+    
+<body>
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <div id="modal-text">Section Name</div>
+            <div id="tooltip">You must be signed in to mark questions as solved.</div>
+        </div>
+    </div>
+
+    <div class="main">
+        <h1 class="roboto-bold" id="algomap">Spectra.io - Learn DSA for Free</h1>
+        <div id="user-details"></div>
+        <button id="signInBtn" onclick="signInWithGoogle()" style="display: none;">Sign In with Google</button>
+        <button id="signOutBtn" onclick="signOut()" style="display: none;">Sign Out</button>
+        <div class="global-progress-container">
+            <div class="global-progress-bar" id="global-progress-bar"></div>
+        </div>
+        <div class="global-progress-text" id="global-progress-text">0 / 100</div>
+    </div>
+    
+    <div class="roadmap">
+        <h4>Everything here is completely free.<!-- To donate, please do so here! <a target="_blank" href="https://www.youtube.com/channel/UCJublDh2UsiIKsAE1553miw/join"><button id="donate" style="font-size: 11px">Donate</button></a>--></h4>
+        <div class="roadmap-level">
+            <div class="roadmap-section" onclick="openModal('Arrays & Strings')">
+                <h1>Arrays & Strings</h1>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar-Arrays-&-Strings"></div>
+                </div>
+                <div class="progress-text" id="progress-text-Arrays-&-Strings">0 / 10</div>
+                
+            </div>
+        </div>
+        <img src="/Dsa/images/down.png" alt="Down Arrow" height="20px">
+        <div class="roadmap-level">
+            <div class="roadmap-section" onclick="openModal('Hashmaps & Sets')">
+                <h1>Hashmaps & Sets</h1>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar-Hashmaps-&-Sets"></div>
+                </div>
+                <div class="progress-text" id="progress-text-Hashmaps-&-Sets">0 / 10</div>
+                
+            </div>
+        </div>
+        <img src="/Dsa/images/down.png" alt="Down Arrow" height="20px">
+        <div class="roadmap-level">
+            <div class="roadmap-section" onclick="openModal('2 Pointers')">
+                <h1>2 Pointers</h1>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar-2-Pointers"></div>
+                </div>
+                <div class="progress-text" id="progress-text-2-Pointers">0 / 7</div>
+                
+            </div>
+        </div>
+        <img src="/Dsa/images/down.png" alt="Down Arrow" height="20px">
+        <div class="roadmap-level">
+            <div class="roadmap-section" onclick="openModal('Stacks')">
+                <h1>Stacks</h1>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar-Stacks"></div>
+                </div>
+                <div class="progress-text" id="progress-text-Stacks">0 / 5</div>
+                
+            </div>
+        </div>
+        <img src="/Dsa/images/down.png" alt="Down Arrow" height="20px">
+        <div class="roadmap-level">
+            <div class="roadmap-section" onclick="openModal('Linked Lists')">
+                <h1>Linked Lists</h1>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar-Linked-Lists"></div>
+                </div>
+                <div class="progress-text" id="progress-text-Linked-Lists">0 / 7</div>
+                
+            </div>
+        </div>
+        <img src="/Dsa/images/down.png" alt="Down Arrow" height="20px">
+        <div class="roadmap-level">
+            <div class="roadmap-section" onclick="openModal('Binary Search')">
+                <h1>Binary Search</h1>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar-Binary-Search"></div>
+                </div>
+                <div class="progress-text" id="progress-text-Binary-Search">0 / 8</div>
+                
+            </div>
+        </div>
+        <img src="/Dsa/images/down.png" alt="Down Arrow" height="20px">
+        <div class="roadmap-level">
+            <div class="roadmap-section" onclick="openModal('Sliding Window')">
+                <h1>Sliding Window</h1>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar-Sliding-Window"></div>
+                </div>
+                <div class="progress-text" id="progress-text-Sliding-Window">0 / 6</div>
+                
+            </div>
+        </div>
+        <img src="/Dsa/images/down.png" alt="Down Arrow" height="20px">
+        <div class="roadmap-level">
+            <div class="roadmap-section" onclick="openModal('Trees')">
+                <h1>Trees</h1>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar-Trees"></div>
+                </div>
+                <div class="progress-text" id="progress-text-Trees">0 / 15</div>
+                
+            </div>
+        </div>
+        <img src="/Dsa/images/down.png" alt="Down Arrow" height="20px">
+        <div class="roadmap-level">
+            <div class="roadmap-section" onclick="openModal('Heaps')">
+                <h1>Heaps</h1>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar-Heaps"></div>
+                </div>
+                <div class="progress-text" id="progress-text-Heaps">0 / 5</div>
+                
+            </div>
+        </div>
+        <img src="/Dsa/images/down.png" alt="Down Arrow" height="20px">
+        <div class="roadmap-level">
+            <div class="roadmap-section" onclick="openModal('Recursive Backtracking')">
+                <h1>Recursive Backtracking</h1>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar-Recursive-Backtracking"></div>
+                </div>
+                <div class="progress-text" id="progress-text-Recursive-Backtracking">0 / 7</div>
+                
+            </div>
+        </div>
+        <img src="/Dsa/images/down.png" alt="Down Arrow" height="20px">
+        <div class="roadmap-level">
+            <div class="roadmap-section" onclick="openModal('Graphs')">
+                <h1>Graphs</h1>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar-Graphs"></div>
+                </div>
+                <div class="progress-text" id="progress-text-Graphs">0 / 10</div>
+                
+            </div>
+        </div>
+        <img src="/Dsa/images/down.png" alt="Down Arrow" height="20px">
+        <div class="roadmap-level">
+            <div class="roadmap-section" onclick="openModal('Dynamic Programming')">
+                <h1>Dynamic Programming</h1>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar-Dynamic-Programming"></div>
+                </div>
+                <div class="progress-text" id="progress-text-Dynamic-Programming">0 / 10</div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="bottom-refer">
+    <h5>Learn Python, Data Science & AI at our partner site <a href='https://mlnow.ai' target="about_blank">mlnow.ai</a></h3>
+    </div>
+    <br><br><br><br><br><br>
+</body>
+</html>
+

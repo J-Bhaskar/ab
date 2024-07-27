@@ -1,0 +1,475 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #1e1e1e;
+    margin: 0;
+    padding: 0;
+    color: #f4f4f4;
+    overflow: hidden; /* Prevent scrolling when modal is open */
+    font-size: 90%; /* Smaller font size for overall scaling */
+}
+
+
+#signInMessage {
+    color: white;
+    margin-top: 18px;
+}
+
+#tooltip {
+    display: none;
+    position: absolute;
+    background-color: #484848;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    z-index: 1000;
+    border: 1px solid #cdcdcd;
+}
+
+.difficulty-easy {
+    color: #0bd0fc;
+}
+
+.difficulty-medium {
+    color: #ff9d0b;
+}
+
+.difficulty-hard {
+    color: #f44336;
+}
+
+/* General link styles */
+a {
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: color 0.4s;
+}
+
+/* Hover and focus styles for links */
+a.problem-name:hover,
+a.problem-name:focus {
+    color: #a1fb78;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 18px;
+}
+
+.roadmap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    font-size: 13px;
+    text-align: center;
+}
+
+
+.roadmap-level {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    position: relative;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 18px;
+}
+
+.roadmap-section {
+    width: 300px;
+    height: fit-content;
+    border: 1px solid #424242;
+    padding: 18px;
+    background: linear-gradient(135deg, #2c2c2c, #3a3a3a);
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 75%;
+}
+
+.roadmap-section:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+    background: linear-gradient(135deg, #343434, #3d3d3d);
+}
+
+h1 {
+    margin: 10px 0;
+}
+
+/* Global progress bar styles */
+.global-progress-container {
+    width: 25%;
+    background-color: #444;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 18px 0;
+}
+
+.global-progress-bar {
+    height: 28px;
+    background-color: #3dce42;
+    width: 0;
+    text-align: center;
+    color: white;
+    line-height: 28px;
+    transition: width 0.3s;
+}
+
+.global-progress-text {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.progress-container {
+    width: 80%;
+    background-color: #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 9px;
+}
+
+.progress-bar {
+    height: 18px;
+    background-color: #4caf50;
+    width: 0;
+    text-align: center;
+    color: white;
+    line-height: 18px;
+    transition: width 0.3s;
+}
+
+.progress-text {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 13px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #388e3c;
+    color: white;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #4caf50;
+    transform: scale(1.05);
+}
+
+/* Existing styles for the modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevents scrolling outside the modal */
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.5s;
+    text-align: center;
+}
+
+.modal-content {
+    background-color: #333;
+    margin: 2% auto;
+    padding: 8px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    max-width: 75%;
+    max-height: 85%;
+    overflow-y: auto; /* Enable vertical scrolling */
+    color: #f4f4f4;
+}
+
+/* Add responsive media query for devices with max-width of 600px */
+@media (max-width: 600px) {
+
+    .roadmap h4 {
+        font-size: 16px;
+        padding: 8px;
+    }
+    
+    table {
+        border: 0px solid #323232;
+        border-radius: 0px;
+    }
+    .modal {
+        height: 100vh; /* Full viewport height */
+        width: 100vw; /* Full viewport width */
+    }
+
+    .modal-content {
+        width: 100vw; /* Full viewport width */
+        height: 100vh; /* Full viewport height */
+        max-width: 100%; /* Ensure no max-width restriction */
+        max-height: 100%; /* Ensure no max-height restriction */
+        padding: 0; /* Remove padding */
+        margin: 0; /* Remove margin */
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        border: 0px;
+    }
+    
+    #modal-text {
+        width: 100vw; /* Full viewport width */
+        height: 100vh; /* Full viewport height */
+        max-width: 100%; /* Ensure no max-width restriction */
+        max-height: 100%; /* Ensure no max-height restriction */
+        padding: 0; /* Remove padding */
+        margin: 0; /* Remove margin */
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    }
+
+
+    .button, .close-button {
+        padding: 12px 24px; /* Larger touch targets for buttons */
+        font-size: 16px; /* Larger font size for readability */
+    }
+
+    .close-button {
+        right: 10px; /* Adjust position to stay within the screen bounds */
+        top: 10px;
+    }
+
+    .global-progress-container {
+        width: 50% !important;
+    }
+
+    .prerequisite-box {
+        margin-left: 0px !important;
+    }
+
+    .prerequisites-container {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+}
+
+
+/* Adjust close button inside modal for easier accessibility */
+.close-button {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    color: #aaa;
+    font-size: 28px; /* Increase size for better touch interaction */
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: white;
+    text-decoration: none;
+}
+
+
+#modal-text .global-progress-container {
+    max-width: 50%;
+    margin: auto 0;
+}
+
+.modal-content h2 {
+    padding: 9px;
+}
+
+table {
+    width: 100%;
+    margin: 0 auto;
+    display: table;
+    border-collapse: collapse;
+    transition: box-shadow 0.3s ease-in-out;
+    border: 10px solid #323232;
+    border-radius: 10px;
+    box-shadow: #1e1e1e;
+}
+
+th,
+td {
+    padding: 8px 14px;
+    transition: background-color 0.5s;
+    height: 28px;
+    border: 0px;
+    white-space: nowrap;
+}
+
+th {
+    background-color: #388e3c;
+    color: white;
+    text-transform: uppercase;
+    background-color: #373a37;
+}
+
+td {
+    font-family: 'Open Sans', sans-serif;
+}
+
+th:first-child,
+td:first-child {
+    text-align: left;
+}
+
+th:not(:first-child),
+td:not(:first-child) {
+    text-align: center;
+}
+
+td.checkmark-cell {
+    text-align: center;
+    cursor: pointer;
+}
+
+tr:nth-child(even) {
+    background-color: #2c2c2c;
+}
+
+button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: #388e3c;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4caf50;
+}
+
+.close-button {
+    color: #6b6b6b;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+.roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+#algomap {
+    font-size: 32px;
+    margin-top: 18px;
+}
+
+
+.prerequisites-container {
+    display: flex;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 18px;
+    margin-bottom: 18px;
+    justify-content: center;
+}
+
+.prerequisite-box {
+    background: linear-gradient(135deg, #414141, #3a3a3a);
+    padding: 14px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(26, 25, 25, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color:rgba(26, 25, 25, 0.3); /* Inherit text color from parent */
+}
+
+.prerequisite-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #494949, #3d3d3d);
+}
+
+.prerequisite-box h4 {
+    margin: 10px 0;
+    font-size: 15px;
+    color: #f4f4f4;
+    white-space: no-wrap;
+}
+
+.prerequisite-box p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #9cd956;
+    white-space: no-wrap;
+}
+
+.prerequisite-box:hover h4, .prerequisite-box:hover p {
+    color: #fafafa;
+}
+
+.bottom-refer {
+    text-align: center;
+}
+
+.bottom-refer a:hover {
+    color: #42d747;
+}
+
+.x {
+    color: rgb(143, 143, 143);
+}
+
+.x:hover {
+    color: rgb(190, 190, 190);
+}
+
+.check {
+    color: rgb(0, 255, 123);
+}
+
+.check:hover {
+    color: rgb(187, 255, 160);
+}
+
+#donate {
+    padding: 8px 10px;
+    margin-left: 3px;
+}
